@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aies Travels | Exclusive Discounted Vacations & Travel Liaison Network</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0b1120',
+                            950: '#050814',
+                        },
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(11, 17, 32, 0.65), rgba(11, 17, 32, 0.75)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-navy-900 via-teal-600 to-navy-900 text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-inner flex justify-between items-center">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="flex items-center gap-2">
+                <span class="bg-gold-500 text-navy-900 text-[10px] font-bold uppercase px-2 py-0.5 rounded-full">Limited Offer</span>
+                Unlock Wholesale Rates Up to 55% Off Hotels, Flights & Rail
+            </span>
+            <button onclick="openAffiliateModal('member')" class="hidden md:inline-flex items-center gap-1 hover:underline text-teal-200 font-semibold">
+                Join Member Club <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8 py-3.5 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-navy-900 to-teal-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-paper-plane text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight text-navy-900 flex items-center gap-1">
+                        AIES <span class="text-teal-600">TRAVELS</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500 block -mt-1 tracking-widest uppercase font-semibold">Worldwide Luxury & Savings</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <a href="#hero" class="hover:text-teal-600 transition-colors">Home</a>
+                <a href="#deals" class="hover:text-teal-600 transition-colors">Vacation Packages</a>
+                <a href="#services" class="hover:text-teal-600 transition-colors">Search Deals</a>
+                <a href="#benefits" class="hover:text-teal-600 transition-colors">Why Aies</a>
+                <a href="#affiliate-info" class="hover:text-teal-600 transition-colors">Liaison Network</a>
+            </nav>
+
+            <!-- Prominent Affiliate / Member Button -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="openAffiliateModal('affiliate')" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs md:text-sm font-bold text-navy-900 rounded-xl group bg-gradient-to-br from-teal-500 to-navy-900 group-hover:from-teal-500 group-hover:to-navy-900 hover:text-white shadow-md shadow-teal-500/10 transition-all">
+                    <span class="relative px-4 py-2.5 transition-all ease-in duration-75 bg-white rounded-[10px] group-hover:bg-opacity-0 group-hover:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie text-teal-600 group-hover:text-white transition-colors"></i>
+                        Interested in becoming a member or affiliate travel liaison?
+                    </span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-teal-600">Home</a>
+            <a href="#deals" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-teal-600">Vacation Packages</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-teal-600">Search Deals</a>
+            <a href="#benefits" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-teal-600">Why Aies</a>
+            <a href="#affiliate-info" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-teal-600">Affiliate Liaison</a>
+            <div class="pt-2">
+                <button onclick="toggleMobileMenu(); openAffiliateModal('affiliate');" class="w-full bg-gradient-to-r from-navy-900 to-teal-600 text-white py-3 rounded-xl font-bold text-sm shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-user-tie"></i>
+                    Become Member or Liaison
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION WITH SEARCH WIDGET -->
+        <section id="hero" class="hero-bg relative min-h-[640px] flex items-center justify-center py-16 px-4">
+            <div class="container mx-auto max-w-6xl relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-10 text-white">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-teal-300 border border-white/20 text-xs font-semibold uppercase tracking-wider mb-4">
+                        <i class="fa-solid fa-star text-gold-400"></i> Wholesale Pricing Premier Access
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4">
+                        Travel More. Spend Less. <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-teal-200 to-gold-400">Every Single Time.</span>
+                    </h1>
+                    <p class="text-base md:text-lg text-slate-200 font-normal max-w-2xl mx-auto">
+                        Aies Travels delivers exclusive discounted rates across luxury hotels, flights, rail, and car rentals worldwide.
+                    </p>
+                </div>
+
+                <!-- SEARCH & BOOKING WIDGET -->
+                <div class="glass-panel rounded-3xl p-4 sm:p-6 shadow-2xl border border-white/40 max-w-5xl mx-auto">
+                    <!-- Search Mode Tabs -->
+                    <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-3 mb-4 border-b border-slate-200/60 no-scrollbar" id="searchTabs">
+                        <button onclick="switchSearchTab('packages')" id="tab-packages" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap bg-navy-900 text-white shadow-md transition-all">
+                            <i class="fa-solid fa-box-archive text-teal-400"></i> Vacation Bundles
+                        </button>
+                        <button onclick="switchSearchTab('hotels')" id="tab-hotels" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:bg-slate-100 transition-all">
+                            <i class="fa-solid fa-hotel text-slate-500"></i> Hotels
+                        </button>
+                        <button onclick="switchSearchTab('flights')" id="tab-flights" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:bg-slate-100 transition-all">
+                            <i class="fa-solid fa-plane text-slate-500"></i> Flights
+                        </button>
+                        <button onclick="switchSearchTab('trains')" id="tab-trains" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:bg-slate-100 transition-all">
+                            <i class="fa-solid fa-train text-slate-500"></i> Trains
+                        </button>
+                        <button onclick="switchSearchTab('cars')" id="tab-cars" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:bg-slate-100 transition-all">
+                            <i class="fa-solid fa-car text-slate-500"></i> Car Rental
+                        </button>
+                    </div>
+
+                    <!-- Search Form Inputs -->
+                    <form id="searchForm" onsubmit="handleSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-end">
+                        
+                        <!-- Dynamic Destination Input -->
+                        <div class="lg:col-span-4">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Destination / Location</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <input type="text" id="searchInput" placeholder="Where do you want to go?" required class="w-full pl-10 pr-3 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm font-medium focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all shadow-sm">
+                            </div>
+                        </div>
+
+                        <!-- Dates -->
+                        <div class="lg:col-span-3">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Dates</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-calendar-days absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <input type="date" id="dateInput" required class="w-full pl-10 pr-3 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm font-medium focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all shadow-sm">
+                            </div>
+                        </div>
+
+                        <!-- Guests/Type Select -->
+                        <div class="lg:col-span-3">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1" id="guestsLabel">Travelers / Class</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-user-group absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <select id="guestsSelect" class="w-full pl-10 pr-3 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm font-medium focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all shadow-sm">
+                                    <option value="1">1 Adult (Economy)</option>
+                                    <option value="2" selected>2 Adults (Economy / Standard)</option>
+                                    <option value="2-first">2 Adults (Business / Luxury)</option>
+                                    <option value="family">Family (2 Adults, 2 Kids)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="lg:col-span-2">
+                            <button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-md shadow-teal-500/20 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DISCOUNTED PACKAGES & FEATURED DEALS -->
+        <section id="deals" class="py-16 px-4 container mx-auto max-w-7xl">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-teal-600 font-bold text-xs uppercase tracking-widest block mb-1">Handpicked Wholesale Deals</span>
+                    <h2 class="text-3xl font-extrabold text-navy-900">Featured Discounted Vacations</h2>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+                    <button onclick="filterDeals('all')" class="deal-filter-btn active bg-navy-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">All Deals</button>
+                    <button onclick="filterDeals('bundle')" class="deal-filter-btn bg-white border border-slate-200 text-slate-600 text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-100 transition-all">Flight + Hotel</button>
+                    <button onclick="filterDeals('hotel')" class="deal-filter-btn bg-white border border-slate-200 text-slate-600 text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-100 transition-all">Resorts & Hotels</button>
+                    <button onclick="filterDeals('train')" class="deal-filter-btn bg-white border border-slate-200 text-slate-600 text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-100 transition-all">Rail Getaways</button>
+                </div>
+            </div>
+
+            <!-- Deals Grid -->
+            <div id="dealsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript will populate deals dynamically -->
+            </div>
+        </section>
+
+        <!-- WHY AIES TRAVELS / BENEFITS -->
+        <section id="benefits" class="bg-navy-900 text-white py-20 px-4 relative overflow-hidden">
+            <!-- Decorative Glow -->
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="container mx-auto max-w-7xl relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-teal-400 font-bold text-xs uppercase tracking-widest block mb-2">The Aies Advantage</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold">Why Smart Travelers Choose Us</h2>
+                    <p class="text-slate-400 text-sm md:text-base mt-3">We leverage exclusive institutional contracts and wholesale connections to bring you non-public rates across every leg of your journey.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-dark p-6 rounded-2xl border border-white/10 hover:border-teal-500/40 transition-all hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Unbeatable Wholesale Rates</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Save up to 60% compared to mainstream public booking engines with our private contract tariffs.</p>
+                    </div>
+
+                    <div class="glass-dark p-6 rounded-2xl border border-white/10 hover:border-teal-500/40 transition-all hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">All-In-One Travel Suite</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Seamlessly bundle luxury hotels, premium flights, high-speed rail, and luxury car rentals in one booking.</p>
+                    </div>
+
+                    <div class="glass-dark p-6 rounded-2xl border border-white/10 hover:border-teal-500/40 transition-all hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Dedicated Liaison Network</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Work with trained independent Affiliate Travel Liaisons who curate custom itineraries tailored for you.</p>
+                    </div>
+
+                    <div class="glass-dark p-6 rounded-2xl border border-white/10 hover:border-teal-500/40 transition-all hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">24/7 VIP Concierge</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Enjoy around-the-clock priority customer support during your trips for total peace of mind.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE MEMBER & AFFILIATE LIAISON SECTION -->
+        <section id="affiliate-info" class="py-20 px-4 bg-slate-100">
+            <div class="container mx-auto max-w-6xl">
+                <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 sm:p-12 shadow-xl border border-slate-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="bg-teal-100 text-teal-800 text-xs font-extrabold uppercase px-3 py-1 rounded-full inline-block">
+                            Partnership & Membership Opportunities
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 leading-tight">
+                            Become an Exclusive Member or an Affiliate Travel Liaison
+                        </h2>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Whether you want to unlock private wholesale fares for your personal vacations or build an independent income stream by helping others travel, Aies Travels gives you the platform.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="text-teal-600 font-bold mb-1 flex items-center gap-2 text-sm">
+                                    <i class="fa-solid fa-crown text-gold-500"></i> Member Club Perks
+                                </div>
+                                <ul class="text-xs text-slate-500 space-y-1.5">
+                                    <li>• Secret unlisted resort discounts</li>
+                                    <li>• Complimentary room upgrades</li>
+                                    <li>• Priority flight seat assignments</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="text-navy-900 font-bold mb-1 flex items-center gap-2 text-sm">
+                                    <i class="fa-solid fa-briefcase text-teal-500"></i> Affiliate Liaison Perks
+                                </div>
+                                <ul class="text-xs text-slate-500 space-y-1.5">
+                                    <li>• Earn lucrative booking commissions</li>
+                                    <li>• Flexible work-from-anywhere model</li>
+                                    <li>• Dedicated booking portal & tools</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <button onclick="openAffiliateModal('member')" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-3.5 rounded-xl text-sm shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-user-plus"></i> Join as Member
+                            </button>
+                            <button onclick="openAffiliateModal('affiliate')" class="bg-teal-500 hover:bg-teal-600 text-white font-bold px-6 py-3.5 rounded-xl text-sm shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-handshake"></i> Apply as Travel Liaison
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Travel Liaisons Collaborating" class="w-full h-80 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent flex items-end p-6">
+                                <div class="text-white">
+                                    <p class="font-bold text-lg">Join 2,400+ Active Liaisons</p>
+                                    <p class="text-xs text-slate-300">Empowering travel advisors & savvy travelers across the globe.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <a href="#" class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white tracking-tight">AIES TRAVELS</span>
+                </a>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Your gateway to discounted premium travel experiences. Luxury vacation packages, flights, rail, and hotel reservations tailored to save you more.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#deals" class="hover:text-teal-400">Hotels & Resorts</a></li>
+                    <li><a href="#deals" class="hover:text-teal-400">Flight Deals</a></li>
+                    <li><a href="#deals" class="hover:text-teal-400">Rail Getaways</a></li>
+                    <li><a href="#deals" class="hover:text-teal-400">Car Rental Savings</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">Liaison Network</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="openAffiliateModal('member')" class="hover:text-teal-400">Become a VIP Member</button></li>
+                    <li><button onclick="openAffiliateModal('affiliate')" class="hover:text-teal-400">Affiliate Liaison Application</button></li>
+                    <li><a href="#" class="hover:text-teal-400">Partner Commission Portal</a></li>
+                    <li><a href="#" class="hover:text-teal-400">Travel Agent Terms</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">Contact & Support</h4>
+                <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-envelope mr-2 text-teal-400"></i> support@aiestravels.com</p>
+                <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-phone mr-2 text-teal-400"></i> +1 (800) 555-AIES</p>
+                <p class="text-xs text-slate-400"><i class="fa-solid fa-location-dot mr-2 text-teal-400"></i> Suite 400, Travel Plaza, NY</p>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-8 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between text-xs gap-4">
+            <p>&copy; 2026 Aies Travels, Inc. All rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Terms of Service</a>
+                <a href="#" class="hover:underline">Licensing</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MODAL: INTERESTED IN BECOMING MEMBER / AFFILIATE LIAISON -->
+    <div id="affiliateModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-navy-950/70 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="closeAffiliateModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Header / Tabs -->
+            <div class="mb-6">
+                <h3 class="text-2xl font-extrabold text-navy-900 mb-2">Join Aies Travels</h3>
+                <p class="text-xs text-slate-500">Select how you would like to collaborate with us today.</p>
+                
+                <!-- Toggle Switch -->
+                <div class="flex bg-slate-100 p-1 rounded-xl mt-4">
+                    <button id="modalTabMember" onclick="switchModalTab('member')" class="flex-1 py-2 rounded-lg text-xs font-bold transition-all bg-white text-navy-900 shadow-sm">
+                        <i class="fa-solid fa-user text-teal-600 mr-1.5"></i> Become a VIP Member
+                    </button>
+                    <button id="modalTabAffiliate" onclick="switchModalTab('affiliate')" class="flex-1 py-2 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-navy-900">
+                        <i class="fa-solid fa-briefcase text-teal-600 mr-1.5"></i> Apply as Travel Liaison
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Form -->
+            <form id="affiliateForm" onsubmit="handleModalSubmit(event)">
+                <input type="hidden" id="formRoleType" value="member">
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name *</label>
+                        <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-teal-500 outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address *</label>
+                            <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-teal-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number *</label>
+                            <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-teal-500 outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Member Specific Fields -->
+                    <div id="memberFields" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Primary Travel Interest</label>
+                            <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-teal-500 outline-none">
+                                <option>Luxury Resorts & Hotels</option>
+                                <option>International Flight Deals</option>
+                                <option>Scenic Rail & Train Vacations</option>
+                                <option>All-Inclusive Bundles</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Affiliate Specific Fields -->
+                    <div id="affiliateFields" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Travel Industry Experience</label>
+                            <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-teal-500 outline-none">
+                                <option>New to Travel Industry (Training Needed)</option>
+                                <option>Independent Travel Blogger / Influencer</option>
+                                <option>Experienced Travel Agent (1-3 years)</option>
+                                <option>Senior Agency Veteran (3+ years)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Brief Introduction / Goals</label>
+                            <textarea rows="2" placeholder="Tell us about your client base or travel advisory background..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-teal-500 outline-none"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" id="submitModalBtn" class="w-full bg-gradient-to-r from-navy-900 to-teal-600 text-white font-bold py-3.5 rounded-xl text-sm shadow-lg hover:opacity-95 transition-all">
+                            Submit Member Registration
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Success State Feedback -->
+            <div id="modalSuccess" class="hidden text-center py-8 space-y-4">
+                <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h4 class="text-xl font-extrabold text-navy-900">Application Received!</h4>
+                <p class="text-slate-600 text-xs sm:text-sm max-w-sm mx-auto">
+                    Thank you for applying. An Aies Travels Liaison manager will review your submission and contact you within 24 hours.
+                </p>
+                <button onclick="closeAffiliateModal()" class="bg-navy-900 text-white text-xs font-bold px-6 py-2.5 rounded-xl">
+                    Return to Site
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL: DEAL DETAILS & BOOKING FLOW -->
+    <div id="dealModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-navy-950/70 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeDealModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div id="dealModalContent">
+                <!-- Javascript rendered content -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Sample Vacation Deals Data
+        const dealsData = [
+            {
+                id: 1,
+                title: "Overwater Villa Escape",
+                location: "Bora Bora, French Polynesia",
+                category: "bundle",
+                categoryLabel: "Flight + Hotel",
+                price: 2490,
+                originalPrice: 4200,
+                discount: "40% OFF",
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+                badge: "Member Exclusive",
+                description: "Includes roundtrip business flights, 6 nights in a luxury overwater bungalow, daily breakfast, and airport speed boat transfers.",
+                inclusions: ["Roundtrip Airline Tickets", "5-Star Luxury Resort", "Daily Breakfast Included", "Free Airport Transfer"]
+            },
+            {
+                id: 2,
+                title: "Swiss Alps Express Rail & Resort",
+                location: "Zermatt & St. Moritz, Switzerland",
+                category: "train",
+                categoryLabel: "Rail + Hotel",
+                price: 1350,
+                originalPrice: 2100,
+                discount: "35% OFF",
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=800&q=80",
+                badge: "Rail Special",
+                description: "First-class Glacier Express scenic train pass combined with 5 nights luxury alpine spa resort accommodation.",
+                inclusions: ["1st Class Train Pass", "4-Star Spa Resort Stay", "Guided Mountain Excursion", "Ski Pass Discount"]
+            },
+            {
+                id: 3,
+                title: "Amalfi Coast Cliffside Retreat",
+                location: "Positano, Italy",
+                category: "hotel",
+                categoryLabel: "Hotel Special",
+                price: 890,
+                originalPrice: 1550,
+                discount: "42% OFF",
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80",
+                badge: "Wholesale Rate",
+                description: "Enjoy dramatic Mediterranean ocean views with complimentary room upgrades and daily wine tasting experiences.",
+                inclusions: ["Boutique Ocean View Room", "Daily Continental Breakfast", "Sunset Wine Cruise", "Concierge Service"]
+            },
+            {
+                id: 4,
+                title: "Tokyo & Kyoto Bullet Train Odyssey",
+                location: "Tokyo to Kyoto, Japan",
+                category: "bundle",
+                categoryLabel: "Flight + Train + Hotel",
+                price: 1880,
+                originalPrice: 2950,
+                discount: "36% OFF",
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
+                badge: "Popular Deal",
+                description: "Explore traditional and modern Japan with international airfare, Shinkansen bullet train passes, and luxury hotel stays.",
+                inclusions: ["International Airfare", "7-Day Unlimited Shinkansen Rail Pass", "4-Star Hotels", "Pocket Wi-Fi Device"]
+            },
+            {
+                id: 5,
+                title: "Santorini Luxury Cave Suite",
+                location: "Oia, Greece",
+                category: "hotel",
+                categoryLabel: "Hotel Stay",
+                price: 1120,
+                originalPrice: 1800,
+                discount: "37% OFF",
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80",
+                badge: "Hot Deal",
+                description: "Iconic caldera views from your private infinity plunge pool. Curated by top Aies Affiliate Liaisons.",
+                inclusions: ["Private Infinity Plunge Pool", "Champagne Welcome Basket", "Car Rental Included (3 Days)"]
+            },
+            {
+                id: 6,
+                title: "Grand Canyon Luxury Convertible Escapes",
+                location: "Las Vegas to Arizona, USA",
+                category: "train",
+                categoryLabel: "Car + Hotel",
+                price: 640,
+                originalPrice: 980,
+                discount: "34% OFF",
+                rating: 4.6,
+                image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
+                badge: "Drive & Stay",
+                description: "Drive a premium convertible across scenic national parks with luxury lodge bookings included.",
+                inclusions: ["Luxury Convertible Rental", "National Park Pass", "3 Nights Historic Lodge Stay"]
+            }
+        ];
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Search Tab Switching
+        let currentSearchTab = 'packages';
+        function switchSearchTab(tab) {
+            currentSearchTab = tab;
+            const tabs = ['packages', 'hotels', 'flights', 'trains', 'cars'];
+            
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === tab) {
+                    btn.className = "tab-btn active px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap bg-navy-900 text-white shadow-md transition-all";
+                } else {
+                    btn.className = "tab-btn px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:bg-slate-100 transition-all";
+                }
+            });
+
+            // Adjust search input placeholder
+            const searchInput = document.getElementById('searchInput');
+            if(tab === 'hotels') searchInput.placeholder = "City or Hotel Name...";
+            else if(tab === 'flights') searchInput.placeholder = "Departure / Destination Airports...";
+            else if(tab === 'trains') searchInput.placeholder = "Rail Route or Station...";
+            else if(tab === 'cars') searchInput.placeholder = "Pick-up Airport or City...";
+            else searchInput.placeholder = "Where do you want to go?";
+        }
+
+        // Render Featured Deals
+        function renderDeals(filter = 'all') {
+            const dealsGrid = document.getElementById('dealsGrid');
+            dealsGrid.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? dealsData 
+                : dealsData.filter(d => d.category === filter);
+
+            filtered.forEach(deal => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 hover:shadow-xl transition-all duration-300 flex flex-col group";
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden h-52">
+                        <img src="${deal.image}" alt="${deal.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20">
+                            ${deal.badge}
+                        </span>
+                        <span class="absolute top-3 right-3 bg-teal-500 text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+                            ${deal.discount}
+                        </span>
+                    </div>
+
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-teal-600"></i> ${deal.location}</span>
+                                <span class="font-semibold text-slate-700"><i class="fa-solid fa-star text-gold-400 mr-1"></i>${deal.rating}</span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-navy-900 mb-2 group-hover:text-teal-600 transition-colors">
+                                ${deal.title}
+                            </h3>
+
+                            <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">
+                                ${deal.description}
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block uppercase font-bold">Wholesale Price</span>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-extrabold text-navy-900">$${deal.price}</span>
+                                    <span class="text-xs text-slate-400 line-through">$${deal.originalPrice}</span>
+                                </div>
+                            </div>
+
+                            <button onclick="openDealModal(${deal.id})" class="bg-teal-500 hover:bg-teal-600 text-white font-bold px-4 py-2.5 rounded-xl text-xs shadow-md transition-all">
+                                View Deal
+                            </button>
+                        </div>
+                    </div>
+                `;
+                dealsGrid.appendChild(card);
+            });
+        }
+
+        // Deal Filter Handler
+        function filterDeals(cat) {
+            document.querySelectorAll('.deal-filter-btn').forEach(btn => {
+                btn.className = "deal-filter-btn bg-white border border-slate-200 text-slate-600 text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-100 transition-all";
+            });
+            event.target.className = "deal-filter-btn active bg-navy-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all";
+            renderDeals(cat);
+        }
+
+        // Modal: Member / Affiliate
+        function openAffiliateModal(defaultTab = 'affiliate') {
+            document.getElementById('affiliateModal').classList.remove('hidden');
+            switchModalTab(defaultTab);
+            document.getElementById('affiliateForm').classList.remove('hidden');
+            document.getElementById('modalSuccess').classList.add('hidden');
+        }
+
+        function closeAffiliateModal() {
+            document.getElementById('affiliateModal').classList.add('hidden');
+        }
+
+        function switchModalTab(type) {
+            const memberTab = document.getElementById('modalTabMember');
+            const affiliateTab = document.getElementById('modalTabAffiliate');
+            const memberFields = document.getElementById('memberFields');
+            const affiliateFields = document.getElementById('affiliateFields');
+            const submitBtn = document.getElementById('submitModalBtn');
+            const roleInput = document.getElementById('formRoleType');
+
+            roleInput.value = type;
+
+            if(type === 'member') {
+                memberTab.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all bg-white text-navy-900 shadow-sm";
+                affiliateTab.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-navy-900";
+                memberFields.classList.remove('hidden');
+                affiliateFields.classList.add('hidden');
+                submitBtn.innerText = "Join Membership Club";
+            } else {
+                affiliateTab.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all bg-white text-navy-900 shadow-sm";
+                memberTab.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-navy-900";
+                affiliateFields.classList.remove('hidden');
+                memberFields.classList.add('hidden');
+                submitBtn.innerText = "Apply as Travel Liaison";
+            }
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            document.getElementById('affiliateForm').classList.add('hidden');
+            document.getElementById('modalSuccess').classList.remove('hidden');
+        }
+
+        // Deal Modal Details & Booking Simulation
+        function openDealModal(dealId) {
+            const deal = dealsData.find(d => d.id === dealId);
+            if(!deal) return;
+
+            const content = document.getElementById('dealModalContent');
+            content.innerHTML = `
+                <div class="relative h-60 rounded-2xl overflow-hidden mb-6">
+                    <img src="${deal.image}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-transparent to-transparent flex items-end p-6">
+                        <div class="text-white">
+                            <span class="bg-teal-500 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">${deal.categoryLabel}</span>
+                            <h3 class="text-2xl font-extrabold">${deal.title}</h3>
+                            <p class="text-xs text-slate-300"><i class="fa-solid fa-location-dot text-teal-400 mr-1"></i> ${deal.location}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-slate-700">
+                    <div>
+                        <h4 class="font-bold text-navy-900 text-sm mb-1">Package Summary</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">${deal.description}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-navy-900 text-sm mb-2">What's Included in this Discounted Rate:</h4>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            ${deal.inclusions.map(inc => `<li class="flex items-center gap-2 text-slate-600"><i class="fa-solid fa-circle-check text-teal-500"></i> ${inc}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-between mt-4">
+                        <div>
+                            <span class="text-xs text-slate-500 block">Total Member Fare</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-2xl font-extrabold text-navy-900">$${deal.price}</span>
+                                <span class="text-xs text-slate-400 line-through">$${deal.originalPrice}</span>
+                                <span class="text-xs font-bold text-teal-600">(${deal.discount})</span>
+                            </div>
+                        </div>
+                        <button onclick="simulateBooking('${deal.title}')" class="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md transition-all">
+                            Proceed to Reserve
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('dealModal').classList.remove('hidden');
+        }
+
+        function closeDealModal() {
+            document.getElementById('dealModal').classList.add('hidden');
+        }
+
+        function simulateBooking(title) {
+            const content = document.getElementById('dealModalContent');
+            content.innerHTML = `
+                <div class="text-center py-8 space-y-4">
+                    <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto text-2xl animate-bounce">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-navy-900">Reservation Hold Confirmed!</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
+                        Your reservation lock for <strong>${title}</strong> has been generated. An assigned Aies Travel Liaison will reach out shortly to finalize flight schedules and payment details.
+                    </p>
+                    <button onclick="closeDealModal()" class="bg-navy-900 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-md">
+                        Done
+                    </button>
+                </div>
+            `;
+        }
+
+        // Handle Search Form Submit
+        function handleSearch(e) {
+            e.preventDefault();
+            const location = document.getElementById('searchInput').value;
+            alert(`Searching wholesale inventory for "${location || 'Featured Destinations'}" under ${currentSearchTab.toUpperCase()} tab...`);
+        }
+
+        // Initial Setup
+        window.onload = function() {
+            renderDeals();
+            // Set default date picker to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('dateInput').value = tomorrow.toISOString().split('T')[0];
+        };
+    </script>
+</body>
+</html>
